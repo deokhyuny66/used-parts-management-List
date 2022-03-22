@@ -12,6 +12,6 @@
   else {
 	  rs = userDAO.add(userID);
 	  if(!(rs.equals("") || rs.equals(null))) response.sendRedirect("./index.jsp");	  
-  }
+  }//
 %>
     
