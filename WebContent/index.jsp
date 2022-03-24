@@ -7,10 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
- <form action="./userAddAction.jsp" method="post"> 
+ <form action="./addAction.jsp" method="post"> 
    <input type="text" name="param1"> 
    <input type="submit" value="submit"> 
   </form>
 </body>
 </html>
-<!--  -->
