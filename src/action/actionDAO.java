@@ -35,8 +35,6 @@ public class actionDAO {
     		while(rs.next()) {
     			items.add(rs.getString(1));
     		}
-
-    		
     	} catch (Exception e) {
     		e.printStackTrace();
     	}
