@@ -6,7 +6,9 @@
 <%
 	actionDAO actionDAO = new actionDAO();
 	actionDTO actionDTO = new actionDTO();
-	List<String> rs_dao = actionDAO.select();
+	ArrayList<HashMap<String,Object>> rs_dao_list = new ArrayList<HashMap<String,Object>>();
+	//List<String> rs_dao_list = new ArrayList<String>();
+	rs_dao_list = actionDAO.selectAll();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -75,8 +77,8 @@
 	<p>List Page!</p><br/>
 	
 	<div class='container'>
-	<% for (int i=0;i<rs_dao.size();i++) {%>
-		<div id="item-<%=i%>" name="item" onClick="reply_click(this.id)"><%= rs_dao.get(i) %></div>
+	<% for (int i=0;i<rs_dao_list.size();i++) { %>
+		<div id="item-<%=i%>" name="item" onClick="reply_click(this.id)"><%= rs_dao_list.get(i) %></div>
 	<% } %>
 
 	    <div id="modal" class="modal-overlay">
@@ -99,13 +101,13 @@
 		item_click = document.getElementById(clickedId);
 		item_click.addEventListener('click', function(){
 			modalOn();
-			
 			$.ajax({
-				type: "GET",
+				type: "POST",
 				url: "itemsAjax.jsp",
-				dataType: 'text',
-				success: function(data){
-					alert(data);
+				dataType: "text",
+				success: function(res){
+					alert(res);
+					//$('#modal .content').html(res);
 				},
 				error: function(){
 					alert("False");

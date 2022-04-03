@@ -3,11 +3,17 @@
 <%@ page import="action.actionDAO" %>
 <%@ page import="action.actionDTO" %>
 <%@ page import="java.util.*" %>
+<%@ page import="org.json.simple.JSONObject"%>
+<%@ page import="org.json.simple.JSONArray" %>
+
 <%
 	request.setCharacterEncoding("utf-8");
+//	List<String> list = new ArrayList<String>();
+	ArrayList<HashMap<String,Object>> list = new ArrayList<HashMap<String,Object>>();
 	actionDAO actionDAO = new actionDAO();
 	actionDTO actionDTO = new actionDTO();
-	List<String> rs_dao = actionDAO.select();
+	list = actionDAO.selectAll();
 %>
-<%= rs_dao.get(0) %>
+<%= list %>
+
 
