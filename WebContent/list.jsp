@@ -3,12 +3,13 @@
 <%@ page import="action.actionDAO"%>
 <%@ page import="action.actionDTO" %>
 <%@ page import="java.util.*" %>
+<%@ page import="java.util.Map.Entry" %>
 <%
 	actionDAO actionDAO = new actionDAO();
 	actionDTO actionDTO = new actionDTO();
-	ArrayList<HashMap<String,Object>> rs_dao_list = new ArrayList<HashMap<String,Object>>();
-	//List<String> rs_dao_list = new ArrayList<String>();
-	rs_dao_list = actionDAO.selectAll();
+	ArrayList<HashMap<String,String>> rs_dao_list = new ArrayList<HashMap<String,String>>();
+	HashMap<String,String> map = new HashMap<String,String>();
+	rs_dao_list = actionDAO.selectAll();	
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -77,8 +78,10 @@
 	<p>List Page!</p><br/>
 	
 	<div class='container'>
-	<% for (int i=0;i<rs_dao_list.size();i++) { %>
-		<div id="item-<%=i%>" name="item" onClick="reply_click(this.id)"><%= rs_dao_list.get(i) %></div>
+	<% for (int j=0;j<rs_dao_list.size();j++) { 
+			for(Entry<String, String> elem : rs_dao_list.get(j).entrySet() ){%>
+				<div id="item-<%=j%>" name="item" onClick="reply_click(this.id)">Å° : <%= elem.getKey() %> / °ª : <%= elem.getValue() %></div><br/>
+			<%} %>
 	<% } %>
 
 	    <div id="modal" class="modal-overlay">
