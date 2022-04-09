@@ -5,6 +5,7 @@
 <%@ page import="java.util.*" %>
 <%@ page import="java.util.Map.Entry" %>
 <%
+	int j = 0;
 	actionDAO actionDAO = new actionDAO();
 	actionDTO actionDTO = new actionDTO();
 	ArrayList<HashMap<String,String>> rs_dao_list = new ArrayList<HashMap<String,String>>();
@@ -78,12 +79,17 @@
 	<p>List Page!</p><br/>
 	
 	<div class='container'>
-	<% for (int j=0;j<rs_dao_list.size();j++) { 
-			for(Entry<String, String> elem : rs_dao_list.get(j).entrySet() ){%>
-				<div id="item-<%=j%>" name="item" onClick="reply_click(this.id)">Å° : <%= elem.getKey() %> / °ª : <%= elem.getValue() %></div><br/>
-			<%} %>
-	<% } %>
-
+	<table border=1>
+	<% for (j=0;j<rs_dao_list.size();j++) {%>
+		<tr>
+			<% for(Entry<String, String> elem : rs_dao_list.get(j).entrySet() ){%>
+				<td id="<%=j+1%>" name="item" onClick="reply_click(this.id)">
+							<%= elem.getValue() %>
+				</td>
+			<%}%>
+		</tr>
+	<%}%>
+	</table>
 	    <div id="modal" class="modal-overlay">
 	        <div class="modal-window">
 	            <div class="title">
@@ -105,18 +111,28 @@
 		item_click.addEventListener('click', function(){
 			modalOn();
 			$.ajax({
-				type: "POST",
-				url: "itemsAjax.jsp",
-				dataType: "text",
+				type: 'POST',
+				url: 'itemsAjax.jsp',
+				dataType: 'text',
+				data: {
+					name:clickedId
+				},
 				success: function(res){
-					alert(res);
+					res = res.replace(/[\[\]\/?.;|\)*~`!^\-_+<>@\#$%&\\\=\(]/gi,'');
+					res = res.replace(/\s/g, '');
+					var json = JSON.parse(res);
+				    var keys = Object.keys(json);
+				    
+				    for (var i=0; i<keys.length; i++) {
+				    	var key = keys[i];
+				    	alert("key : " + key + ", value : " + json[key]);
+				    }
 					//$('#modal .content').html(res);
 				},
 				error: function(){
 					alert("False");
 				}
 			});
-			
 		});
 	}
 	

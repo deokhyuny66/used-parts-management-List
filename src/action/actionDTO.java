@@ -5,6 +5,7 @@ import java.util.*;
 public class actionDTO {
 	String name = null;
 	String id = null;
+	String items_num = null;
 	List<String> items_arr = null;
 
 	public String getName() {
@@ -13,6 +14,14 @@ public class actionDTO {
 	  
 	public void setName(String paramName) {
 		 this.name = paramName;
+	}
+	
+	public String getItemsNum() {
+		return this.items_num;
+	}
+	  
+	public void setItemsNum(String items_num) {
+		this.items_num = items_num;
 	}
 	
 	public String getId() {

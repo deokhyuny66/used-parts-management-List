@@ -8,7 +8,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import util.DatabaseUtil;
 import action.actionDTO;
@@ -17,12 +21,15 @@ public class actionDAO {
 	Connection conn = DatabaseUtil.getConnection();
 	actionDTO actionDTO = new actionDTO();
 	ArrayList<HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
-    public String add(String paramName, String paramId) {
+	ArrayList<HashMap<String,String>> listOfIndex = new ArrayList<HashMap<String,String>>();
+	JSONArray jsonList = new JSONArray();
+
+    public String add(String paramName) {
 	    try {
-	    	System.out.println(paramName);
-	    	PreparedStatement pstmt = conn.prepareStatement("insert into TB_LIST_REGISTER(name,id) values(?,?)");
+	    	PreparedStatement pstmt = conn.prepareStatement("insert into TB_LIST_REGISTER(name) values(?)");
 			pstmt.setString(1, paramName);
-			pstmt.setString(2, paramId);
+			//pstmt.setString(2, paramId);
+			//pstmt.setString(3, paramItemNum);
 			pstmt.executeUpdate();
 	    }catch (Exception e){
 	        e.printStackTrace();
@@ -30,16 +37,38 @@ public class actionDAO {
 		return paramName;
     }
     
+//	public ArrayList<HashMap<String,String>> selectAll() throws SQLException {
+//	
+//    	try {
+//    		Statement stmt = conn.createStatement();
+//    		ResultSet rs = stmt.executeQuery("select * from TB_LIST_REGISTER");
+//    		ResultSetMetaData md = rs.getMetaData();
+//    		int columns = md.getColumnCount();
+//    		
+//    		while(rs.next()) {
+//    			HashMap<String,String> row = new HashMap<String, String>(columns);
+//    			for(int i=1; i<=columns; ++i) {
+//    		            row.put(md.getColumnName(i), (String) rs.getObject(i));
+//		        }
+//		        list.add(row);
+//    		}
+//    		
+//
+//    	} catch (Exception e) {
+//    		e.printStackTrace();
+//    	}
+//    	return list;
+//    }
+    
 	public ArrayList<HashMap<String,String>> selectAll() throws SQLException {
-	
+		
     	try {
     		Statement stmt = conn.createStatement();
-    		ResultSet rs = stmt.executeQuery("select * from TB_LIST_REGISTER");
+    		ResultSet rs = stmt.executeQuery("select name from TB_LIST_REGISTER");
     		ResultSetMetaData md = rs.getMetaData();
     		int columns = md.getColumnCount();
     		
     		while(rs.next()) {
-    			//Map<String, Object> m = new HashMap<String, Object>(columns);
     			HashMap<String,String> row = new HashMap<String, String>(columns);
     			for(int i=1; i<=columns; ++i) {
     		            row.put(md.getColumnName(i), (String) rs.getObject(i));
@@ -53,6 +82,41 @@ public class actionDAO {
     	}
     	return list;
     }
+	
+	public JSONArray selectOfIndex(String paramItemsIndex) throws SQLException {
+    	try {
     
-    
+    		Statement stmt = conn.createStatement();
+    		ResultSet rs = stmt.executeQuery("select name from TB_LIST_REGISTER WHERE id="+paramItemsIndex);
+    		ResultSetMetaData md = rs.getMetaData();
+    		int columns = md.getColumnCount();
+    		List<JSONObject> jsonObj = new ArrayList<JSONObject>();
+
+    		while(rs.next()) {
+    			HashMap<String,String> row = new HashMap<String, String>(columns);
+    			for(int i=1; i<=columns; ++i) {
+    		            row.put(md.getColumnName(i), (String) rs.getObject(i));
+    		            JSONObject obj = new JSONObject(row);
+    		            jsonObj.add(obj);
+		        }
+    			jsonList.add(jsonObj);
+    			//listOfIndex.add(row);
+    			//System.out.println(listOfIndex.get(0));
+    		}
+
+    		/*for(HashMap<String, String> data : listOfIndex) {
+    			JSONObject obj = new JSONObject(row);
+	            jsonObj.add(obj);
+    		   
+    		}
+    		jsonList.add(jsonObj);
+    		System.out.println(jsonList);*/
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
+
+    	return jsonList;
+    }
+
+
 }
