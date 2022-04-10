@@ -12,12 +12,12 @@
 
 <%
 	request.setCharacterEncoding("utf-8");
-	String name = request.getParameter("name");
-	ArrayList<HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
+	String clickItemId = request.getParameter("clickItemId");
+	ArrayList<HashMap<String,Object>> list = new ArrayList<HashMap<String,Object>>();
 	JSONArray jsonList = new JSONArray();
 	actionDAO actionDAO = new actionDAO();
 	actionDTO actionDTO = new actionDTO();
-	jsonList = actionDAO.selectOfIndex(name);
+	jsonList = actionDAO.selectOfIndex(clickItemId);
 %>
 <%= jsonList %>
 

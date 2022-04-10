@@ -8,7 +8,8 @@
 </head>
 <body>
  <form action="./addAction.jsp" method="post"> 
-   Name : <input type="text" name="param1"> 
+   Name : <input type="text" name="param1"> <br/>
+   Age : <input type="text" name="param2"> 
    <input type="submit" value="submit"> 
   </form>
 </body>

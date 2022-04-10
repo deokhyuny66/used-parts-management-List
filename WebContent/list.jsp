@@ -96,7 +96,10 @@
 	                <h2>И№До</h2>
 	            </div>
 	            <div class="close-area">X</div>
-	            <div class="content"></div>
+	            
+	            <form id="contentForm" action="./updateAction.jsp" method="POST">
+		            <div class="content"></div>
+	            </form>
 	        </div>
 	    </div>
     </div>
@@ -105,7 +108,7 @@
 	let item_click;
 	const modal = document.getElementById('modal');
 	const closeBtn = modal.querySelector('.close-area');
-	
+		  
 	function reply_click(clickedId){
 		item_click = document.getElementById(clickedId);
 		item_click.addEventListener('click', function(){
@@ -115,19 +118,23 @@
 				url: 'itemsAjax.jsp',
 				dataType: 'text',
 				data: {
-					name:clickedId
+					clickItemId:clickedId
 				},
 				success: function(res){
-					res = res.replace(/[\[\]\/?.;|\)*~`!^\-_+<>@\#$%&\\\=\(]/gi,'');
+					$('#modal #contentForm .content *').remove();
+					res = res.replace(/[\[\]\/?.;|\)*~`!^\-_+<>@\#$%&\\\=\(]/gi,'');	 
 					res = res.replace(/\s/g, '');
-					var json = JSON.parse(res);
-				    var keys = Object.keys(json);
-				    
-				    for (var i=0; i<keys.length; i++) {
-				    	var key = keys[i];
-				    	alert("key : " + key + ", value : " + json[key]);
-				    }
-					//$('#modal .content').html(res);
+					let json = JSON.parse(res);
+					let keys = Object.keys(json);
+					let $temp;
+					
+				    for (let i=0; i<keys.length; i++) {
+				    	let key = keys[i];
+				    	//alert("key : " + key + ", value : " + json[key]);
+				    	$temp = $('#modal #contentForm .content').append('<input type="text" name="selitemParam'+i+'" value="'+json[key]+'" ><br/>');
+				    }		
+				   
+				    $temp = $temp.append('<input type="hidden" name="clickedId" value="'+clickedId+'"><input type="submit" value="submit">');	
 				},
 				error: function(){
 					alert("False");
@@ -135,7 +142,7 @@
 			});
 		});
 	}
-	
+
 	function modalOn() {
 		modal.style.display = 'flex';
 	}
