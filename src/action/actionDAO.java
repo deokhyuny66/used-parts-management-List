@@ -9,11 +9,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-
 import util.DatabaseUtil;
 import action.actionDTO;
 
@@ -30,8 +27,6 @@ public class actionDAO {
 	    	PreparedStatement pstmt = conn.prepareStatement("insert into TB_LIST_REGISTER(name,age) values(?,?)");
 			pstmt.setString(1, paramName);
 			pstmt.setString(2, paramAge);
-			//pstmt.setString(2, paramId);
-			//pstmt.setString(3, paramItemNum);
 			pstmt.executeUpdate();
 	    }catch (Exception e){
 	        e.printStackTrace();
@@ -50,30 +45,6 @@ public class actionDAO {
 	    }
 		return paramName;
     }
-
-    
-//	public ArrayList<HashMap<String,String>> selectAll() throws SQLException {
-//	
-//    	try {
-//    		Statement stmt = conn.createStatement();
-//    		ResultSet rs = stmt.executeQuery("select * from TB_LIST_REGISTER");
-//    		ResultSetMetaData md = rs.getMetaData();
-//    		int columns = md.getColumnCount();
-//    		
-//    		while(rs.next()) {
-//    			HashMap<String,String> row = new HashMap<String, String>(columns);
-//    			for(int i=1; i<=columns; ++i) {
-//    		            row.put(md.getColumnName(i), (String) rs.getObject(i));
-//		        }
-//		        list.add(row);
-//    		}
-//    		
-//
-//    	} catch (Exception e) {
-//    		e.printStackTrace();
-//    	}
-//    	return list;
-//    }
     
 	public ArrayList<HashMap<String,String>> selectAll() throws SQLException {
 		
@@ -115,7 +86,6 @@ public class actionDAO {
     			JSONObject obj = new JSONObject(row);
     			jsonObj.add(obj);
     			jsonList.add(jsonObj);
-    			//
     		}
     	} catch (Exception e) {
     		e.printStackTrace();
@@ -123,6 +93,4 @@ public class actionDAO {
 
     	return jsonList;
     }
-
-
 }
