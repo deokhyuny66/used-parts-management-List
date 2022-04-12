@@ -289,7 +289,7 @@
                       <a class="nav-link active" href="javascript:void(0);"><i class="bx bx-user me-1"></i> Register</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="pages-account-settings-notifications.html"
+                      <a class="nav-link" href="./pages-account-settings-notifications.jsp"
                         ><i class="bx bx-bell me-1"></i> List</a
                       >
                     </li>
@@ -485,7 +485,7 @@
                           </div>
                         </div> -->
                         <div class="mt-2">
-                          <button type="submit" class="btn btn-primary me-2">Save changes</button>
+                          <button type="submit" class="btn btn-primary me-2">Register</button>
                           <button type="reset" class="btn btn-outline-secondary">Cancel</button>
                         </div>
                       </form>
