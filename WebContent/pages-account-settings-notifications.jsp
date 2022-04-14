@@ -44,7 +44,7 @@
     <link rel="stylesheet" href="./assets/vendor/css/core.css" class="template-customizer-core-css" />
     <link rel="stylesheet" href="./assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
     <link rel="stylesheet" href="./assets/css/demo.css" />
-    <link rel="stylesheet" href="./assets/css/modal.css" />
+    <link rel="stylesheet" href="./assets/css/modal1.css" />
     <link rel="stylesheet" href="./assets/css/table-config.css" />
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -176,24 +176,17 @@
                 <h5 class="card-header">Bordered Table</h5>
    
                 <div class="card-body">
-                  <div class="table-responsive text-nowrap">
+                  <div id="x-scroll" class="table-responsive text-nowrap">
                     <table id="tableForm" class="table table-bordered table-hover" style="width:100%;cursor:pointer;">
                       <thead>
                         <tr>
                           <th>#</th>
                           <th>Full Name</th>
                           <th>Company Age</th>
-                          <th>Company Age</th>
-                          <th>Company Age</th>
-                          <th>Company Age</th>
-                          <th>Company Age</th>
-                          <th>Company Age</th>
-                          <th>Company Age</th>
-                          <th>Company Age</th>
                         </tr>
                       </thead>
                       <tbody>
-<%--                       <% for (j=0;j<rs_dao_list.size();j++) {%>
+                       <% for (j=0;j<rs_dao_list.size();j++) {%>
                         <tr id="<%=j+1%>" name="item" onClick="reply_click(this.id)">
                         <th scope="row"><%= j+1 %></th>
                         <% for(Entry<String, String> elem : rs_dao_list.get(j).entrySet() ){%>
@@ -202,208 +195,9 @@
                           </td>
                         <%}%>
                         </tr>
-                      <%}%>   --%> 
-                      <tr>
-                      	<td>a</td>
-                      	<td>b</td>
-                      	<td>c</td>
-                      	<td>a</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>c</td>
-                      </tr>
-                      <tr>
-                      	<td>a</td>
-                      	<td>b</td>
-                      	<td>c</td>
-                      	<td>a</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>c</td>
-                      </tr>
-                      <tr>
-                      	<td>a</td>
-                      	<td>b</td>
-                      	<td>c</td>
-                      	<td>a</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>c</td>
-                      </tr>
-                      <tr>
-                      	<td>a</td>
-                      	<td>b</td>
-                      	<td>c</td>
-                      	<td>a</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>c</td>
-                      </tr>
-                      <tr>
-                      	<td>a</td>
-                      	<td>b</td>
-                      	<td>c</td>
-                      	<td>a</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>c</td>
-                      </tr>
-                      <tr>
-                      	<td>a</td>
-                      	<td>b</td>
-                      	<td>c</td>
-                      	<td>a</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>c</td>
-                      </tr>
-                      <tr>
-                      	<td>a</td>
-                      	<td>b</td>
-                      	<td>c</td>
-                      	<td>a</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>c</td>
-                      </tr>
-                      <tr>
-                      	<td>a</td>
-                      	<td>b</td>
-                      	<td>c</td>
-                      	<td>a</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>c</td>
-                      </tr>
-                      <tr>
-                      	<td>a</td>
-                      	<td>b</td>
-                      	<td>c</td>
-                      	<td>a</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>c</td>
-                      </tr>
-                      <tr>
-                      	<td>a</td>
-                      	<td>b</td>
-                      	<td>c</td>
-                      	<td>a</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>c</td>
-                      </tr>
-                      <tr>
-                      	<td>a</td>
-                      	<td>b</td>
-                      	<td>c</td>
-                      	<td>a</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>c</td>
-                      </tr>
-                      <tr>
-                      	<td>a</td>
-                      	<td>b</td>
-                      	<td>c</td>
-                      	<td>a</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>c</td>
-                      </tr>
-                      <tr>
-                      	<td>a</td>
-                      	<td>b</td>
-                      	<td>c</td>
-                      	<td>a</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>c</td>
-                      </tr>
-                      <tr>
-                      	<td>a</td>
-                      	<td>b</td>
-                      	<td>c</td>
-                      	<td>a</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>c</td>
-                      </tr>
-                      <tr>
-                      	<td>a</td>
-                      	<td>b</td>
-                      	<td>c</td>
-                      	<td>a</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>c</td>
-                      </tr>
-                      <tr>
-                      	<td>a</td>
-                      	<td>b</td>
-                      	<td>c</td>
-                      	<td>a</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>b</td>
-                      	<td>c</td>
-                      </tr>
-                      
-                    
-                      
-                                         
-                      </tbody>
-					  
-                    </table>
-                 
-                    
+                      <%}%>           
+                      </tbody>		  
+                    </table>     
                   </div>
                 </div>
               </div>
@@ -431,8 +225,9 @@
 
 <script>
 	$(document).ready(function() {
-	    $('.card .card-body #tableForm').DataTable();
-	    
+	    $('.card .card-body #tableForm').DataTable({
+	    	"scrollX": true
+	    });
 	});
 	let item_click;
 	const modal = document.getElementById('modal');
@@ -456,14 +251,14 @@
 					let json = JSON.parse(res);
 					let keys = Object.keys(json);
 					let $temp;
-					
 				    for (let i=0; i<keys.length; i++) {
 				    	let key = keys[i];
 				    	//alert("key : " + key + ", value : " + json[key]);
 				    	$temp = $('#modal #contentForm .content').append('<label for="defaultFormControlInput" style="color:#566a7f;" class="form-label">'+key+'</label><input type="text" class="form-control" id="defaultFormControlInput"' 
-				    			+ 'name="selitemParam'+i+'" value="'+json[key]+'" placeholder="John Doe" aria-describedby="defaultFormControlHelp" >');
+				    			+ 'name="selitemParam'+i+'" value="'+json[key]+'" aria-describedby="defaultFormControlHelp" >' );
 				    }		
-				    $temp = $temp.append('<input type="hidden" name="clickedId" value="'+clickedId+'"><br/><div style="text-align:center;position:relative;top:270px;left:100px;"><button type="submit" class="btn btn-info">수정</button>&nbsp;&nbsp;<button type="submit" class="btn btn-dark">삭제</button></div>');	
+				    $temp = $temp.append('<input type="hidden" name="clickedId" value="'+clickedId+'"><br/><div style="text-align:center;position:relative;top:270px;left:100px;">'
+				    + '<button type="submit" class="btn btn-info">수정</button>&nbsp;&nbsp;<button type="submit" class="btn btn-dark">삭제</button></div>');
 				},
 				error: function(){
 					alert("False");
