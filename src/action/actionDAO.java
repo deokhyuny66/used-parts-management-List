@@ -15,6 +15,7 @@ import util.DatabaseUtil;
 import action.actionDTO;
 
 public class actionDAO {
+	boolean rs;
 	Connection conn = DatabaseUtil.getConnection();
 	actionDTO actionDTO = new actionDTO();
 	ArrayList<HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
@@ -22,7 +23,7 @@ public class actionDAO {
 	JSONArray jsonList = new JSONArray();
 	List<JSONObject> jsonObj = new ArrayList<JSONObject>();
 	
-    public String add(String paramName, String paramAge) {
+    public String add(String paramName, String paramAge) throws SQLException {
 	    try {
 	    	PreparedStatement pstmt = conn.prepareStatement("insert into TB_LIST_REGISTER(name,age) values(?,?)");
 			pstmt.setString(1, paramName);
@@ -34,16 +35,30 @@ public class actionDAO {
 		return paramName;
     }
     
-    public String update(String paramName, String paramaAge, String paramClickedId) {
+    public boolean update(String paramName, String paramaAge, String paramClickedId) throws SQLException {
 	    try {
 	    	PreparedStatement pstmt = conn.prepareStatement("update TB_LIST_REGISTER set name=?, age=? WHERE id=" + paramClickedId);
 			pstmt.setString(1, paramName);
 			pstmt.setString(2, paramaAge);
 			pstmt.executeUpdate();
+			rs = true;
 	    }catch (Exception e){
+	    	rs = false;
 	        e.printStackTrace();
 	    }
-		return paramName;
+		return rs;
+    }
+    
+    public boolean delete(String paramClickedId) throws SQLException {
+	    try {
+	    	PreparedStatement pstmt = conn.prepareStatement("delete from TB_LIST_REGISTER WHERE id=" + paramClickedId);
+			pstmt.executeUpdate();
+			rs = true;
+	    }catch (Exception e){
+	    	rs = false;
+	        e.printStackTrace();
+	    }
+	    return rs;
     }
     
 	public ArrayList<HashMap<String,String>> selectAll() throws SQLException {
@@ -71,7 +86,6 @@ public class actionDAO {
 	
 	public JSONArray selectOfIndex(String paramItemsIndex) throws SQLException {
     	try {
-    
     		Statement stmt = conn.createStatement();
     		ResultSet rs = stmt.executeQuery("select name, age from TB_LIST_REGISTER WHERE id="+paramItemsIndex);
     		ResultSetMetaData md = rs.getMetaData();

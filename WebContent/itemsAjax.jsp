@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ page import="action.actionDAO" %>
-<%@ page import="action.actionDTO" %>
 <%@ page import="java.util.*" %>
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.Map "%>;
@@ -16,7 +15,6 @@
 	ArrayList<HashMap<String,Object>> list = new ArrayList<HashMap<String,Object>>();
 	JSONArray jsonList = new JSONArray();
 	actionDAO actionDAO = new actionDAO();
-	actionDTO actionDTO = new actionDTO();
 	jsonList = actionDAO.selectOfIndex(clickItemId);
 %>
 <%= jsonList %>

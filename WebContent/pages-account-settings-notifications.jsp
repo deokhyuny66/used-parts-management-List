@@ -44,8 +44,8 @@
     <link rel="stylesheet" href="./assets/vendor/css/core.css" class="template-customizer-core-css" />
     <link rel="stylesheet" href="./assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
     <link rel="stylesheet" href="./assets/css/demo.css" />
-    <link rel="stylesheet" href="./assets/css/modal1.css" />
-    <link rel="stylesheet" href="./assets/css/table-config.css" />
+    <link rel="stylesheet" href="./assets/css/modal.css" />
+    <link rel="stylesheet" href="./assets/css/table-config1.css" />
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
@@ -215,7 +215,7 @@
 	        <div class="modal-window">
 	            <div class="close-area">X</div>
 	            
-	            <form id="contentForm" action="./updateAction.jsp" method="POST">
+	            <form id="contentForm" action="./eventAction.jsp" method="POST">
 		            <div class="content"></div>
 	            </form>
 	        </div>
@@ -258,7 +258,7 @@
 				    			+ 'name="selitemParam'+i+'" value="'+json[key]+'" aria-describedby="defaultFormControlHelp" >' );
 				    }		
 				    $temp = $temp.append('<input type="hidden" name="clickedId" value="'+clickedId+'"><br/><div style="text-align:center;position:relative;top:270px;left:100px;">'
-				    + '<button type="submit" class="btn btn-info">수정</button>&nbsp;&nbsp;<button type="submit" class="btn btn-dark">삭제</button></div>');
+				    + '<input type="submit" class="btn btn-info" value="수정" name="update">&nbsp;&nbsp;<input type="submit" class="btn btn-dark" value="삭제" name="delete"></div>');
 				},
 				error: function(){
 					alert("False");
@@ -266,10 +266,10 @@
 			});
 		});
 	}
-
 	
 	function modalOn() {
 		modal.style.display = 'flex';
+		$('.paginate_button').css('backdrop-filter','blur(1.5px)');
 	}
 	
 	function isModalOn() {
