@@ -187,15 +187,18 @@
                       </thead>
                       <tbody>
                        <% for (j=0;j<rs_dao_list.size();j++) {%>
-                        <tr id="<%=j+1%>" name="item" onClick="reply_click(this.id)">
+                        <tr id="<%= j+1 %>" onClick="reply_click(this.id,'<%=rs_dao_list.get(j).get("id")%>')">
+                        <%-- <tr id="<%= j+1 %>" class="tb-wrap" onClick="reply_click('<%=rs_dao_list.get(j).get("id")%>')"> --%>
                         <th scope="row"><%= j+1 %></th>
-                        <% for(Entry<String, String> elem : rs_dao_list.get(j).entrySet() ){%>
+                        <% for(Entry<String, String> elem : rs_dao_list.get(j).entrySet() ){
+                        	if(!elem.getKey().equals("id") ){%>
                           <td>
                             <i class="fab fa-angular fa-lg text-danger me-3"></i> <strong><%= elem.getValue() %></strong>
                           </td>
+                          <%}%>
                         <%}%>
                         </tr>
-                      <%}%>           
+                      <%}%>
                       </tbody>		  
                     </table>     
                   </div>
@@ -218,7 +221,7 @@
 	            <form id="contentForm" action="./eventAction.jsp" method="POST">
 		            <div class="content"></div>
 	            </form>
-	        </div>
+ 	        </div> 
 	    </div>
     </div>
     <!-- / Layout wrapper -->
@@ -233,8 +236,8 @@
 	const modal = document.getElementById('modal');
 	const closeBtn = modal.querySelector('.close-area');
 		  
-	function reply_click(clickedId){
-		item_click = document.getElementById(clickedId);
+	function reply_click(tb_clickId,clickedId){
+		item_click = document.getElementById(tb_clickId);
 		item_click.addEventListener('click', function(){
 			modalOn();
 			$.ajax({
@@ -254,11 +257,13 @@
 				    for (let i=0; i<keys.length; i++) {
 				    	let key = keys[i];
 				    	//alert("key : " + key + ", value : " + json[key]);
-				    	$temp = $('#modal #contentForm .content').append('<label for="defaultFormControlInput" style="color:#566a7f;" class="form-label">'+key+'</label><input type="text" class="form-control" id="defaultFormControlInput"' 
-				    			+ 'name="selitemParam'+i+'" value="'+json[key]+'" aria-describedby="defaultFormControlHelp" >' );
+				    	if(key !== 'id') {
+				    		$temp = $('#modal #contentForm .content').append('<label for="defaultFormControlInput" style="color:#566a7f;" class="form-label">'+key+'</label><input type="text" class="form-control" id="defaultFormControlInput"' 
+					    			+ 'name="selitemParam'+i+'" value="'+json[key]+'" aria-describedby="defaultFormControlHelp" >' );
+				    	}
 				    }		
 				    $temp = $temp.append('<input type="hidden" name="clickedId" value="'+clickedId+'"><br/><div style="text-align:center;position:relative;top:270px;left:100px;">'
-				    + '<input type="submit" class="btn btn-info" value="수정" name="update">&nbsp;&nbsp;<input type="submit" class="btn btn-dark" value="삭제" name="delete"></div>');
+				    + '<input type="submit" class="btn btn-info" value="up" name="update">&nbsp;&nbsp;<input type="submit" class="btn btn-dark" value="del" name="delete"></div>');
 				},
 				error: function(){
 					alert("False");

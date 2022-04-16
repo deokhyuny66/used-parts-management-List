@@ -1,3 +1,4 @@
+<%@page import="sun.invoke.empty.Empty"%>
 <%@ page import="action.actionDAO" %>
 <%@ page import="action.actionDTO" %>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
@@ -6,23 +7,27 @@
   request.setCharacterEncoding("UTF-8"); 
   actionDAO actionDAO = new actionDAO();
   actionDTO actionDTO = new actionDTO();
-  boolean rs;
 
-  if(request.getParameter("delete").equals("삭제")){
-	  actionDTO.setId((String) request.getParameter("clickedId"));
-	  rs = actionDAO.delete(actionDTO.getId());
-	  if(rs == true) response.sendRedirect("./pages-account-settings-notifications.jsp");
-	  else response.sendRedirect("./error.jsp");
-  }else if(request.getParameter("update").equals("수정")){
-	  actionDTO.setName((String) request.getParameter("selitemParam0"));
-	  actionDTO.setAge((String) request.getParameter("selitemParam1"));
-	  actionDTO.setId((String) request.getParameter("clickedId"));
-	  if(actionDTO.getId().equals("") || actionDTO.getId().equals(null)) response.sendRedirect("./error.jsp");
-	  if(actionDTO.getName().equals("") || actionDTO.getName().equals(null)) response.sendRedirect("./error.jsp");
-	  if(actionDTO.getAge().equals("") || actionDTO.getAge().equals(null)) response.sendRedirect("./error.jsp");
-	  rs = actionDAO.update(actionDTO.getName(), actionDTO.getAge(), actionDTO.getId());
-	  if(rs == true) response.sendRedirect("./pages-account-settings-notifications.jsp");
-	  else response.sendRedirect("./error.jsp");
+  if(request.getParameter("delete") != null){
+	  if(request.getParameter("clickedId").equals("") || request.getParameter("clickedId").equals(null)){
+			response.sendRedirect("./error.jsp");
+	  }else {
+			actionDTO.setId((String) request.getParameter("clickedId"));
+			actionDAO.delete(actionDTO.getId());
+			response.sendRedirect("./pages-account-settings-notifications.jsp");
+	  }
+  }else if(request.getParameter("update") != null){
+	  if(request.getParameter("selitemParam0").equals("") || request.getParameter("selitemParam0").equals(null)
+			  || request.getParameter("selitemParam2").equals("") || request.getParameter("selitemParam2").equals(null) 
+			  || request.getParameter("clickedId").equals("") || request.getParameter("clickedId").equals(null)){
+		  response.sendRedirect("./error.jsp");
+	  }else {
+		  actionDTO.setName((String) request.getParameter("selitemParam0"));
+		  actionDTO.setAge((String) request.getParameter("selitemParam2"));
+		  actionDTO.setId((String) request.getParameter("clickedId"));
+	  	  actionDAO.update(actionDTO.getName(), actionDTO.getAge(), actionDTO.getId());
+	  	  response.sendRedirect("./pages-account-settings-notifications.jsp");
+	  }
   }
 %>
     
