@@ -1,18 +1,18 @@
 #modal.modal-overlay {
     width: 100%;
     height: 100%;
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
     display: none;
-    flex-direction: column;
+    /* flex-direction: column; */
     align-items: center;
+    overflow-x: hidden;
     justify-content: center;
     background: rgba(255, 255, 255, 0.25);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     backdrop-filter: blur(1.5px);
     -webkit-backdrop-filter: blur(1.5px);
-    border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.18);
 }
 #modal .modal-window {
@@ -23,13 +23,13 @@
     -webkit-backdrop-filter: blur( 13.5px );
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
-    width: 400px;
-    height: 500px;
+    width: 360px;
+    height: 480px;
     position: relative;
-    top: -100px;
+    /* top: -100px; */
     padding: 10px;
-    max-height: calc(100vh - 210px);
-    overflow-y: auto !important;
+    /* max-height: calc(100vh - 210px); */
+    /* overflow-y: auto !important; */
 }
 #modal .title {
     padding-left: 10px;

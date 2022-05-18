@@ -28,6 +28,8 @@ public class actionDAO {
 			pstmt.setString(1, paramName);
 			pstmt.setString(2, paramAge);
 			pstmt.executeUpdate();
+			pstmt.close();
+			conn.close();
 	    }catch (Exception e){
 	        e.printStackTrace();
 	    }
@@ -40,6 +42,8 @@ public class actionDAO {
 			pstmt.setString(1, paramName);
 			pstmt.setString(2, paramaAge);
 			pstmt.executeUpdate();
+			pstmt.close();
+			conn.close();
 	    }catch (Exception e){
 	        e.printStackTrace();
 	    }
@@ -50,6 +54,8 @@ public class actionDAO {
 	    try {
 	    	PreparedStatement pstmt = conn.prepareStatement("delete from TB_LIST_REGISTER WHERE id='" + paramClickedId+"'");
 			pstmt.executeUpdate();
+			pstmt.close();
+			conn.close();
 	    }catch (Exception e){
 	        e.printStackTrace();
 	    }
@@ -76,7 +82,9 @@ public class actionDAO {
     			list.add(row);
     		}
     		System.out.println(list);
-
+    		rs.close();
+    		stmt.close();
+    		conn.close();
     	} catch (Exception e) {
     		e.printStackTrace();
     	}
@@ -104,6 +112,9 @@ public class actionDAO {
     			jsonObj.add(obj);
     			jsonList.add(jsonObj);
     		}
+    		rs.close();
+    		stmt.close();
+    		conn.close();
     	} catch (Exception e) {
     		e.printStackTrace();
     	}

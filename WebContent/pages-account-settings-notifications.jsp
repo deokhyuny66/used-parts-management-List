@@ -6,9 +6,9 @@
 <%@ page import="java.util.Map.Entry" %>
 <%
 	request.setCharacterEncoding("UTF-8"); 
-	int j = 0;
 	actionDAO actionDAO = new actionDAO();
 	actionDTO actionDTO = new actionDTO();
+	int j = 0;
 	ArrayList<HashMap<String,String>> rs_dao_list = new ArrayList<HashMap<String,String>>();
 	HashMap<String,String> map = new HashMap<String,String>();
 	rs_dao_list = actionDAO.selectAll();	
@@ -41,24 +41,19 @@
     <link rel="stylesheet" href="./assets/vendor/fonts/boxicons.css" />
 
     <!-- Core CSS -->
-    <link rel="stylesheet" href="./assets/vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="./assets/vendor/css/core1.css" class="template-customizer-core-css" />
     <link rel="stylesheet" href="./assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
     <link rel="stylesheet" href="./assets/css/demo.css" />
-    <link rel="stylesheet" href="./assets/css/modal.css" />
-    <link rel="stylesheet" href="./assets/css/table-config1.css" />
+    <link rel="stylesheet" href="./assets/css/modal2.css" />
+    <link rel="stylesheet" href="./assets/css/table-config.css" />
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 	<script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap.min.js"></script>
     <!-- Helpers -->
     <script src="./assets/vendor/js/helpers.js"></script>
-
     <script src="./assets/js/config.js"></script>
-    
-	<style>
 
-	</style>
- 
   </head>
 
   <body>
@@ -171,6 +166,15 @@
             <div class="container-xxl flex-grow-1 container-p-y">
 
 			<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Account Settings /</span> List</h4>
+             <ul class="nav nav-pills flex-column flex-md-row mb-3">
+            	<li class="nav-item">
+              		<a class="nav-link" href="./pages-account-settings-account.jsp"><i class="bx bx-user me-1"></i> Register</a>
+            	</li>
+            	<li class="nav-item">
+              		<a class="nav-link active" href="./pages-account-settings-notifications.jsp"><i class="bx bx-bell me-1"></i> List</a>
+            	</li>
+         	 </ul>
+			
              <!-- Bordered Table -->
               <div class="card">
                 <h5 class="card-header">Bordered Table</h5>
@@ -262,8 +266,8 @@
 					    			+ 'name="selitemParam'+i+'" value="'+json[key]+'" aria-describedby="defaultFormControlHelp" >' );
 				    	}
 				    }		
-				    $temp = $temp.append('<input type="hidden" name="clickedId" value="'+clickedId+'"><br/><div style="text-align:center;position:relative;top:270px;left:100px;">'
-				    + '<input type="submit" class="btn btn-info" value="up" name="update">&nbsp;&nbsp;<input type="submit" class="btn btn-dark" value="del" name="delete"></div>');
+				    $temp = $temp.append('<input type="hidden" name="clickedId" value="'+clickedId+'"><br/><div style="text-align:center;position:relative;top:268px;left:90px;">'
+				    + '<input type="submit" class="btn btn-info" value="수정" name="update">&nbsp;&nbsp;<input type="submit" class="btn btn-dark" value="삭제" name="delete"></div>');
 				},
 				error: function(){
 					alert("False");

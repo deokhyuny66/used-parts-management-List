@@ -2167,7 +2167,7 @@ progress {
 .col-form-label-sm {
   padding-top: calc(0.25rem + 1px);
   padding-bottom: calc(0.25rem + 1px);
-  font-size: 0.75rem;
+/*   font-size: 0.75rem; */
 }
 
 .form-text {
@@ -9581,7 +9581,7 @@ button.list-group-item-gray.active {
 }
 
 .mb-4 {
-  margin-bottom: 1.5rem !important;
+ margin-bottom: 1.5rem !important;
 }
 
 .mb-5 {
